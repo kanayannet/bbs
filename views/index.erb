@@ -1,0 +1,36 @@
+<form method="post">
+  <table border="1" width="300" padding="2">
+    <tr>
+      <td><input type="text" name="name" placeholder="name" size="10"></td>
+    </tr>
+    <tr>
+      <td><input type="text" name="subject" placeholder="subject" size="30"></td>
+    </tr>
+    <tr>
+      <td><textarea rows="10" cols="50" name="body"></textarea></td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="write"></td>
+    </tr>
+  </table>
+</form>
+<hr>
+<table border="1">
+  <tr>
+    <td>date</td>
+    <td>name</td>
+    <td>subject</td>
+    <td>body</td>
+    <td>edit</td>
+  </tr>
+<% @articles.each do |r| %>
+  <% date = r.updated_at.strftime("%Y-%m-%d") %>
+  <tr>
+    <td><%= date %></td>
+    <td><%= r.name %></td>
+    <td><%= r.subject %></td>
+    <td><%= r.body.gsub("\n", '<br>') %></td>
+    <td><input type="button" value="edit" onclick="location.href='./<%= r.id %>';"></td>
+  </tr>
+<% end %>
+</table>

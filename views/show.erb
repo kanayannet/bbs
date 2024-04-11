@@ -1,0 +1,17 @@
+<form method="post" action="/">
+  <input type="hidden" name="id" value="<%= @article.id %>">
+  <table border="1" width="300" padding="2">
+    <tr>
+      <td><input type="text" name="name" placeholder="name" size="10" value="<%= @article.name %>"></td>
+    </tr>
+    <tr>
+      <td><input type="text" name="subject" placeholder="subject" size="30" value="<%= @article.subject %>"></td>
+    </tr>
+    <tr>
+      <td><textarea rows="10" cols="50" name="body"><%= @article.body %></textarea></td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="update"></td>
+    </tr>
+  </table>
+</form>
