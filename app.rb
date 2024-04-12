@@ -23,4 +23,11 @@ class BBS < Sinatra::Base
     art.save
     redirect '/'
   end
+
+  delete '/:id' do
+    art = Article.find_by(id: params[:id])
+    art.delete
+    content_type :json
+    { status: true }.to_json
+  end
 end

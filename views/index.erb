@@ -22,6 +22,7 @@
     <td>subject</td>
     <td>body</td>
     <td>edit</td>
+    <td>delete</td>
   </tr>
 <% @articles.each do |r| %>
   <% date = r.updated_at.strftime("%Y-%m-%d") %>
@@ -31,6 +32,22 @@
     <td><%= r.subject %></td>
     <td><%= r.body.gsub("\n", '<br>') %></td>
     <td><input type="button" value="edit" onclick="location.href='./<%= r.id %>';"></td>
+    <td><input type="button" value="delete" data-id="<%= r.id %>" class="js-delete-button"></td>
   </tr>
 <% end %>
 </table>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+  $(".js-delete-button").click(function(){
+    let id = $(this).data("id");
+    $.ajax({
+      method: "delete",
+      url: "./"+id,
+      dataType: "json"
+    }).done(function(json){
+      if(json.status){
+        location.reload();
+      }
+    });
+  });
+</script>
